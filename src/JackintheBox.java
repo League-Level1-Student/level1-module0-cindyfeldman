@@ -1,3 +1,5 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 
 import javax.swing.Icon;
@@ -7,20 +9,23 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class JackintheBox {
+public class JackintheBox 
+implements ActionListener{
 	JButton button;
 	JFrame frame;
 	JPanel panel;
-
+	JLabel label;
+	int buttonPressed = 0;
 	private void showPicture(String fileName) {
 		try {
-			JLabel imageLabel = createLabelImage("jackinthebox.jpg");
+			
 			panel = new JPanel();
 			frame = new JFrame();
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.add(imageLabel);
+			
 			frame.setVisible(true);
 			button = new JButton("suprise");
+			button.addActionListener(this);
 			frame.add(button);
 			frame.pack();
 
@@ -28,7 +33,18 @@ public class JackintheBox {
 			e.printStackTrace();
 		}
 	}
-
+private void showImage(String fileName) {
+	frame.remove(panel);
+	frame.remove(button);
+	frame = new JFrame();
+	panel = new JPanel();
+	label =createLabelImage(fileName);
+	panel.add(label);
+	frame.add(panel);
+	frame.pack();
+	
+	
+}
 	private JLabel createLabelImage(String fileName) {
 		try {
 			URL imageURL = getClass().getResource(fileName);
@@ -47,10 +63,18 @@ public class JackintheBox {
 	}
 
 	public static void main(String[] args) {
-
+	new JackintheBox().showPicture("jackinthebox.jpg");
+	
+	
 		// 1. Create a user interface that has a single button labeled "Surprise".
 		// 2. When the user presses the button 5 times, show them a jack-in-the-box
 		// using the methods below.
+	
+		
+	}
+	
+		
+	
 		// (A sample jackInTheBox.png file is provided in the default package)
 
 		// 3. Also play a sound when the jack-in-the-box pops up using this method.
@@ -61,5 +85,15 @@ public class JackintheBox {
 		 * catch (Exception e) { e.printStackTrace(); } }
 		 */
 
+	
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		buttonPressed++;
+		if(buttonPressed==5) {
+			showImage("jackinthebox.jpg");
+			System.out.println(buttonPressed);
+		}
 	}
 }

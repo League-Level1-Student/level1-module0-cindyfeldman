@@ -31,7 +31,7 @@ public class BodyPartQuiz {
 	private void startQuiz() {
 
 		// 1. Make an int variable to hold the score.
-
+int Score = 0;
 		// 2. Set the size of the window in the initializeGui() method below
 
 		for (int i = 0; i < 4; i++) {
@@ -41,15 +41,31 @@ public class BodyPartQuiz {
 			
 			// 5. Check their answer. If they guessed correctly:
 			// -- Tell them they are right and increase the score by 1
-
+			if(guess.equals("arnold")) {
+				System.out.println("You are correct");
+				Score++;
+				System.out.println(Score);
+			}
+			
 			// 6. Otherwise:
 			// -- Tell them they are wrong and who the person is
-
+			else {
+				System.out.println("Incorrect. It is"+ " "+"arnold");
+			}
 			// 7. Use the showNextImage() method below to get the next image
 			showNextImage();
 		    // 8. Show them their current score
 			
 			// 9. .... repeat for all your images.....
+if(guess.equals("leonardo")) {
+	System.out.println("you are correct");
+	Score++;
+	System.out.println(Score);
+}
+else {
+	System.out.println("you are incoreect. It is"+" "+ "leonardo");
+	System.out.println(Score);
+}
 
 
 		}
